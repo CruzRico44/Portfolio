@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- <link rel="icon" href="C:\Users\Cruz\Desktop\Portfolio\images\JCR.webp" style="height:64px; width:100%"> -->
+  <link rel="icon" href="data:;base64,=">
+  <link rel="stylesheet" href="./css/portfolio.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cruz Rico - Portfolio Home</title>
+</head>
+
+<script src="./css/jquery.min.js"></script>
+<script src="./css/jquery-ui.min.js"></script>
+<script src="./js/portfolio.js"></script>
+
+
+
+<body>
+
+  <!-- MAIN PAGE HTML -->
+  <div>
+    <div id=black>
+    </div>
+
+    <div id="drawer">
+      <div id="listContainer" class="listContainer">
+        <h3 class="sectionTitle listTitle">
+          // Projects
+           <div class="closeBox">
+            <h3 class="close">
+              &times;
+            </h3>
+          </div>
+        </h3>
+        <ul id="LB1" class="listButton item1" backgroundColor="white">
+          <img id="LI1" class="listImg item1" src=".\images\RWBanner.png"></img>
+        </ul>
+        <ul id="LB2" class="listButton item2">
+          <img id="LI2" class="listImg item2" src=".\images\RWBanner.png"></img>
+        </ul>
+        <ul id="LB3" class="listButton item3">
+          <img id="LI3" class="listImg item3" src=".\images\RWBanner.png"></img> </ul>
+      </div>
+
+      <div id="projectContainer">
+        <div id="info1" class="info">	
+			<h2>Streamlined Icon Generation</h2>
+			<p>As a Technical Designer, a large part of my job is to design and implement tools that streamline art workflows.</p>
+			<p>
+			This mini-project allowed artists to automatically generate icons for hundreds of objects at the click of a button, saving countless hours of work for them, had they done each icon manually. It also
+			 ensured consistency across icon renders, so we could achieve a uniform feel throughout the UI elements in question.
+			</p>
+			<img src = ".\images\ScrollingAutomatedIcons.gif" height="500px" width ="auto" style="vertical-align:middle;margin:0px 50px"/>
+			<p>
+			I would later automate the importing process as well, since batch importing was not supported in our engine.
+			</p>
+			<p>
+			<details>
+			<summary> Here's the code:</summary>
+			<code>
+			########################################################
+			# Last updated: 08/22/2022
+			# 
+			# Renders transparent png images of each mesh objects 
+			# in the current scene using the current active camera
+			# and exports to a given directory
+			# 
+			########################################################
+			import bpy
+			import os
+
+			#Get file path for prefixing exported .obj's
+			file_path = bpy.data.filepath
+			filepath_split = os.path.split(file_path) #list with [path, name]
+			desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
+			#Export path
+			abs_path = desktop + "\\ReworldProjects\\MobileCreationTool\\Guns\\"
+
+			all_obj = bpy.context.scene.objects
+
+			#Uncheck all objects render
+			for obj in all_obj:
+				if(obj.type == "MESH"):
+					obj.hide_render = True
+
+			#Set BG transparent
+			bpy.context.scene.render.film_transparent = True
+
+			for obj in all_obj:
+				if(obj.type == "MESH"):
+					prefix_string = str.split(str(obj.users_collection[0].name), ".")[0]
+					#construct export path
+					export_path = abs_path + bpy.context.scene.name + "\\" + "BeautyRenders" + "\\" + prefix_string + "\\"
+					ext = ".png"
+					#make path if it doesn't exist
+					if not os.path.isdir(export_path):
+						os.makedirs(export_path)
+					bpy.ops.object.select_all(action="DESELECT")
+					obj.select_set(True)
+					obj.hide_render = False
+					bpy.context.scene.render.filepath = export_path + str.split(obj.name,".")[0] + ext
+					bpy.ops.render.render(write_still = 1)
+					obj.hide_render = True
+			</code>
+			</details>
+			</p>
+          <!-- <h1> -->
+            <!-- Parking Fine - Project Summary -->
+          <!-- </h1> -->
+          <!-- <p> -->
+            <!-- Parking Fine was my final and most involved User Experience project -->
+            <!-- I took on before receiving my degree from UCSD. -->
+          <!-- </p> -->
+          <!-- <p> -->
+            <!-- My group documented the project while we developed our product so we -->
+            <!-- could more easily keep track of its scope and remind ourselves of the -->
+            <!-- stakeholders involved. -->
+          <!-- </p> -->
+          <!-- <p> -->
+            <!-- We created several personas which helped us organize stakeholders' -->
+            <!-- priorities and identify their respective breakdowns. -->
+          <!-- </p> -->
+          <!-- <img class="infoImg" src="./images/Persona1.webp"> -->
+          <!-- <img class="infoImg" src="./images/Persona3.webp"> -->
+          <!-- <img class="infoImg" src="./images/Persona2.webp"> -->
+          <!-- <p> -->
+            <!-- Much of the work included ideation and subsequent prototyping: -->
+          <!-- </p> -->
+          <!-- <img class="infoImg" src="./images/KioskSketch.webp" > -->
+          <!-- <img id="PamphletSketch" class="infoImg" src="./images/PamphletSketch.webp"> -->
+          <!-- <img class="infoImg" src="./images/KioskSketch2.webp"> -->
+          <!-- <p> -->
+            <!-- Our work largely consisted of interviewing various stakeholders to -->
+            <!-- analyze trends and determine where there were the greatest breakdowns -->
+            <!-- in our area of interest, namely, the parking system on campus. -->
+          <!-- </p> -->
+          <!-- <p> -->
+            <!-- During our research we discovered that there was a major disconnect -->
+            <!-- between the users - people parking at UCSD, which consisted of students, -->
+            <!-- professors, administration, and community members - and the parking -->
+            <!-- & traffic department itself. We found that many people weren't -->
+            <!-- sufficiently knowledgeable about the campus parking rules. -->
+          <!-- </p> -->
+          <!-- <p> -->
+            <!-- Thus, we set out to address this breakdown through redesigning and -->
+            <!-- streamlining outdated, disorganized, and inefficient channels of information, -->
+            <!-- specifically the UCSD parking website. -->
+          <!-- </p> -->
+          <!-- <p> -->
+            <!-- Our collaboration with the head of the parking department lead us to -->
+            <!-- design kiosks which, if put into actual production, would be placed -->
+            <!-- in parking lots throughout campus that contained more organized and -->
+            <!-- readable information, through the accessible medium of paper pamphlets -->
+            <!-- and a User Interface on the kiosks themselves. -->
+          <!-- </p> -->
+          <!-- <img class="infoImg" src="./images/Pamphlet1.webp" > -->
+          <!-- <img class="infoImg" src="./images/Pamphlet2.webp" > -->
+          <!-- <img class="infoImg" src="./images/KioskFinal.webp" > -->
+          <!-- <p> -->
+            <!-- Our final design was a product that all aforementioned stakeholders -->
+            <!-- were pleased with! -->
+          <!-- </p> -->
+        </div>
+        <div id="info2" class="info">
+		
+<h2>Automated Avatar Rigging</h2>
+
+This problem looked to tackle directly applying .fbx objects to the body parts of our characters in engine, and apply external data to the character rig in order to achieve a perfect 1:1 replacement.
+
+<p>
+Since engine didn't natively allow importing single .fbx character model and rigs, we needed a way to quickly export characters piecemeal and reconstruct them in engine, while retaining joint data.
+</p>
+
+<p>
+My solution was to batch export character body parts as .fbx files (yet another process that I automated) and write their joint data to a JSON file. I then used an AutoIt script to automate clicks that imported each body part to its correct position, and applied the joint data from the .json file.
+</p>
+
+<p>
+Again, this solution saved innumerable hours of rigging by hand, and allowed artists to see their rigged models in-engine extremely quickly, and allowed them to make changes as needed without wasting time.
+</p>
+
+<p>
+An example of a character model that needed to have its body parts, as well as position, size, and joint data recorded and swapped with the default avatar's rig in engine:
+</p>
+
+<img src="./images/NewAvatar.png" height="512px" />
+<!---![Avatar that needed to be imported](https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/NewAvatar.png =512x512)--->
+
+<p>
+The following gif shows the new model's .fbx body parts, position, scale, and joint data being updated automatically using AutoIt in lieu of built-in functionality:
+</p>
+
+<img src="./images/AvatarBuilder.gif" height="512px" />
+
+<p>
+And here's an image of a lineup of avatars that were able to be constructed and tweaked expediently thanks to these scripts:
+</p>
+
+<img src="./images/AvatarLineup.png" height="512px" />
+<p>
+This project allowed us to absolutely demolish the overhead required to see fully ingested characters in our engine, and streamlined the character creation process substantially.
+</p>
+          <!-- <h1> -->
+            <!-- NewsFlash - Project Summary -->
+          <!-- </h1> -->
+          <!-- <p> -->
+          <!-- NewsFlash was a project I took part in during my final quarter at UCSD. -->
+          <!-- The design theme for the class was to design for people who are -->
+          <!-- different from ourselves. With this in mind, we set out to create a -->
+          <!-- web application that facilitated practice in speed reading for people -->
+          <!-- with dyslexia. -->
+          <!-- </p> -->
+          <!-- <img class="infoImg" src="./images/NewsflashScreenshot.webp" > -->
+          <!-- <p> -->
+            <!-- Our starting point was our interest in research that showed that dyslexics -->
+            <!-- are typically much better speed readers than non-dyslexics, and we -->
+            <!-- wanted to develop something that could help foster this skill. We -->
+            <!-- began with a simple program that took a string of words and flashed -->
+            <!-- them at a set frequency that the user could increase or decrease to -->
+            <!-- find a comfortable reading speed. -->
+          <!-- </p> -->
+          <!-- <p> -->
+            <!-- We expanded this function to draw from google's recent news API so -->
+            <!-- as to perform a secondary function of giving readers relevant, -->
+            <!-- real world information to practice on. -->
+          <!-- </p> -->
+          <!-- <p> -->
+            <!-- Finally, we implemented the capability to create a user profile so -->
+            <!-- the user could save articles that they want to return to for further -->
+            <!-- practice, set a preferred font, share articles they found interesting, -->
+            <!-- and save their preferred word frequency. -->
+          <!-- </p> -->
+          <!-- <p> -->
+            <!-- This project allowed me to practice both front and back-end web development, -->
+            <!-- and familiarized me with how to use databases and APIs. -->
+          <!-- </p> -->
+        </div>
+        <div id="info3" class="info">
+		
+		<h2>Illustrator Automation</h2>
+		<p>
+			I've also done projects to automate generating UI elements in Adobe Illustrator.
+		</p>
+		<p>
+			We had reached the point in our project where we had a good amount of UI design work done, and needed to start creating button icons. 
+			We had already made an icon set that we were happy with, but needed to take them through a stylization process to get them ready for ingestion.
+		</p>
+		<p>
+			I noticed that the process was easily automated, so I got to work doing so, and this was the result:
+		</p>
+		<img src="./images/IllustratorAction.gif" height="512px"/>
+		<p>
+			In automating the process, I made what would have taken an afternoon of work for 3 UI artists doing around 100 icons into half an hour of work up front, and about 10 seconds of running each icon through the automation!
+		</p>
+		
+          <!-- <h1> -->
+            <!-- Gymtel - Project Summary -->
+          <!-- </h1> -->
+          <!-- <p> -->
+            <!-- Gymtel was a project that I took on in order to both -->
+            <!-- encourage people who may have never gone to the gym to start going, and to -->
+            <!-- make sure people exercise safely, regardless of skill level. -->
+          <!-- </p> -->
+
+          <!-- <p> -->
+            <!-- I wrote the HTML, CSS, and JavaScript code for the web app, and -->
+            <!-- researched & implemented methods of keeping track of user preferences -->
+            <!-- so the user could return to the app and feel comfortable continuing -->
+            <!-- its use. This included things like different color themes, and setting -->
+            <!-- a user profile picture. -->
+          <!-- </p> -->
+
+          <!-- <p> -->
+            <!-- Below is a demo of Gymtel, one of my first projects in web design: -->
+          <!-- </p> -->
+
+          <!-- <iframe class="frame" id="gymtel" src="https://cruzrico4.github.io/Gym_Project/HTML/home.html"></iframe> -->
+
+        </div>
+      </div>
+
+    </div>
+
+    <!--NAVBAR -->
+    <div class="menuIconContainer">
+      <span class="helper"></span>
+      <div class="iconContainer">
+        <img class="menuIcon" src='.\images\menu_icon.webp'></img>
+      </div>
+      <div class="tipContainer">
+        <h1 class="menuTip">View My Projects!</h1>
+      </div>
+      <div class="menuItemContainer">
+
+        <!-- <div class="menuItem selected"><a href="#">Home</a></div> -->
+        <!-- <div class="menuItem"><a href="html/GraphicDesign.html">Graphic Design</a></div> -->
+        <!-- <div class="menuItem"><a href="html/Photography.html">Photography</a></div> -->
+
+      </div>
+    </div>
+
+
+
+    <a name="top"></a>
+
+    <div id="pfBanner" class="pfBanner">
+      <image id="bannerImage" class= "bannerImage" src=".\images\code_img.webp"></image>
+    </div>
+
+    <div id="bannerWords">
+      <div id="bannerSpacer" style="height:5vh; width:100%;"></div>
+      <h2 id="bannerTitle" class="bannerTitle">
+        Joseph Cruz Rico
+      </h2>
+      <h1 id="bannerSubtitle" class="bannerSubtitle">
+        // Design Portfolio
+      </h1>
+      <p id= "contact" class="contact">
+        Call or Text: 951.514.5050<br>Email: CruzRico4@gmail.com<br>LinkedIn: <a class="LinkedIn" href="https://www.linkedin.com/in/cruzrico3d/">linkedin.com/in/cruzrico3d/</a>
+      </p>
+    </div>
+
+    <div id="resumeContainer">
+      <img id="resume" src=".\images\resume.png" alt=""></img>
+    </div>
+
+
+    <div  class="page">
+      <div class="fill"></div>
+
+      <div class="bodyText">
+        <h1 class="sectionTitle">
+          Welcome to My Portfolio!
+        </h1>
+        <div>
+          <p>
+            This website is a showcase of projects I've had the pleasure of working on in the past. 
+			Consider it an archive of lessons and skills I've learned through UX design.
+          </p>
+          <p>
+            The menu button on the top left will show you a list of UX projects I
+            have taken on, as well as detailed analyses of what I learned from
+            them as a designer.
+          </p>
+          <p>
+            Below is a downloadable pdf of my resume for your viewing pleasure.
+          </p>
+
+        </div>
+
+      <div class="divider"></div>
+
+      <h1 class="sectionTitle">
+        My Experience in User/Human Centered Design
+      </h1>
+      <div>
+        <p>
+          I graduated from University of California San Diego in 2019 with a
+          bachelor's degree in Cognitive Science with Specialization in Human
+          Computer Interaction.
+        </p>
+        <p>
+          That's a mouthfull, I know.
+        </p>
+        <p>
+          My schoolwork largely involved working with other students to identify
+          breakdowns that people encounter in their daily lives, and develop
+          solutions to address those problems over the course of the class quarter.
+        </p>
+        <p>
+          All of the solutions we developed were ideated from real world research
+          of the actual people we were developing for. Much of our work used the
+          concept of Human Centered Design; we would sit down with people, talk to
+          them, and observe them working in the environments relevant to our projects
+          in order to figure out a solution that worked best for them.
+        </p>
+        <p>
+          We would then look over our data together and brainstorm ideas that could
+          potentially address any breakdowns our people of interest were experiencing.
+          These ideas then became prototypes, which we iterated repeatedly, constantly
+          refining our product (which was sometimes software, a website, or a physical
+          object) until we ended up with a final version that we were proud of and
+          felt would best improve the lives of people we were designing for.
+        </p>
+
+      </div>
+
+        <div class="divider"></div>
+        <h1 class="sectionTitle">
+          The Takeaway
+        </h1>
+        <div>
+          <p>
+            Currently, the world is in need of more Human Centered Design. My mission
+            is to find ways to make life better for everyone, and I want to find others
+            who feel similarly. I strive to help make improvements on current designs
+            and create new designs where they are needed to address the needs of
+            as many stakeholders as possible. Everyone is important; everyone needs design.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div id="resumeContainerPDF">
+    <embed id="resumePDF" src=".\images\resume.pdf#scrollbar=0&view=fit" alt="Your browser doesn't have the necessary plugin to view my resume! It's okay, though - you can download it here!"/>
+  </div>
+  <a href="#top" class="top_arrow" title="Back to top"><img id="top_arrow" class="top_arrow" ></img></a>
+  <!-- END MAIN PAGE HTML -->
+
+    The core Firebase JS SDK is always required and must be listed first
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script> -->
+
+    <!-- <!-- TODO: Add SDKs for Firebase products that you want to use -->
+         <!-- https://firebase.google.com/docs/web/setup#available-libraries --> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script> -->
+
+    <!-- <script> -->
+      <!-- // Your web app's Firebase configuration -->
+      <!-- var firebaseConfig = { -->
+        <!-- apiKey: "AIzaSyBMNFSf5TUGwsZhf4FBbUWmMV3LLmj4n4A", -->
+        <!-- authDomain: "website-hit-logger.firebaseapp.com", -->
+        <!-- databaseURL: "https://website-hit-logger.firebaseio.com", -->
+        <!-- projectId: "website-hit-logger", -->
+        <!-- storageBucket: "website-hit-logger.appspot.com", -->
+        <!-- messagingSenderId: "1085379599357", -->
+        <!-- appId: "1:1085379599357:web:bd3f2a199177564b091794", -->
+        <!-- measurementId: "G-H1JTZJFNPN" -->
+      <!-- }; -->
+      <!-- // Initialize Firebase -->
+      <!-- firebase.initializeApp(firebaseConfig); -->
+      <!-- firebase.analytics(); -->
+    <!-- </script> -->
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <!-- <script src="/__/firebase/7.14.2/firebase-app.js"></script> -->
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <!-- <script src="/__/firebase/7.14.2/firebase-analytics.js"></script> -->
+
+    <!-- Add Firebase products that you want to use -->
+    <!-- <script src="/__/firebase/7.14.2/firebase-auth.js"></script> -->
+    <!-- <script src="/__/firebase/7.14.2/firebase-firestore.js"></script> -->
+
+    <!-- Previously loaded Firebase SDKs -->
+
+    <!-- Initialize Firebase -->
+    <!-- <script src="/__/firebase/init.js"></script> -->
+  </body>
+  </html>
